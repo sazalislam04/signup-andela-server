@@ -26,11 +26,11 @@ const client = new MongoClient(uri, {
 const emailSender = (user) => {
   const { fname, email, role } = user;
   const transport = nodemailer.createTransport({
-    host: "smtp.zeptomail.in",
+    host: process.env.HOST_KEY,
     port: 587,
     auth: {
-      user: "emailapikey",
-      pass: "PHtE6r0OQ7u6iTMq9BUFs/axRc72PNks/exlLQJHtYxHA/EAG01Wo9t4mzOy/kgqV/QQHKXInI1osrvNtemCJmrvMmwdD2qyqK3sx/VYSPOZsbq6x00ZuVocd0LcXY/rcdFt1yXRst3eNA==",
+      user: process.env.EMAIL_KEY,
+      pass: process.env.PASSWORD,
     },
   });
 
@@ -108,7 +108,6 @@ async function dbConnect() {
 dbConnect();
 
 const usersCollection = client.db("andela").collection("users");
-
 app.post("/users", async (req, res) => {
   try {
     const user = req.body;
