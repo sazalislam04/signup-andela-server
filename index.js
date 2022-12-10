@@ -33,7 +33,6 @@ const emailSender = (user) => {
       pass: process.env.PASSWORD,
     },
   });
-
   const mailOptions = {
     from: '"The Andela Recruitment Team" <noreply@uptal.org>',
     to: email,
